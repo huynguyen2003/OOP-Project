@@ -68,6 +68,9 @@ public class SignupPage extends javax.swing.JFrame {
                 int rows = pst.executeUpdate();
                 if (rows > 0) {
                     JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
+                    LoginPage page = new LoginPage();
+                    page.setVisible(true);
+                    dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Đăng ký thất bại. Vui lòng thử lại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import java.util.logging.Level;
+import static jframe.DBConnection.con;
 
 /**
  *
@@ -76,6 +77,58 @@ public class SignupPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Lỗi cơ sở dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
+    // validation
+    public boolean validateSignup() {
+        String name = txt_username.getText().trim();
+        String pwd = txt_password.getText().trim();
+        String email = txt_email.getText().trim();
+        String contact = txt_contact.getText().trim();
+
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập username", "Thiếu thông tin", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (pwd.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập password", "Thiếu thông tin", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        // regex email cơ bản (kiểm tra có @ và .)
+        if (email.isEmpty() || !email.matches("^.+@.+\\..+$")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập email hợp lệ", "Sai định dạng", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (contact.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập contact number", "Thiếu thông tin", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+    
+    //check duplicate users
+    public boolean checkDuplicateUser(String username) {
+        String sql = "SELECT 1 FROM users WHERE name = ?";
+        // Dùng DBConnection để đồng nhất; không mở connection thủ công
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            if (con == null) {
+                logger.log(Level.SEVERE, "Không thể kết nối DB để check duplicate");
+                return false;
+            }
+
+            pst.setString(1, username);
+            try (ResultSet rs = pst.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "Lỗi khi kiểm tra duplicate user", ex);
+            return false; // nếu lỗi, trả false để không block luồng đăng ký; bạn có thể thay bằng true tuỳ chính sách
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -109,9 +162,11 @@ public class SignupPage extends javax.swing.JFrame {
         txt_email = new app.bolivia.swing.JCTextField();
         rSMaterialButtonCircle1 = new rojerusan.RSMaterialButtonCircle();
         rSMaterialButtonCircle2 = new rojerusan.RSMaterialButtonCircle();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1523, 830));
         setSize(new java.awt.Dimension(1523, 828));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -157,10 +212,15 @@ public class SignupPage extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons/icons8_Google_Mobile_50px.png"))); // NOI18N
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 50, 60));
 
-        jLabel8.setFont(new java.awt.Font("Serif", 1, 25)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 30)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Signup Page");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 130, 40));
+        jLabel8.setText("X");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 30, 40));
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -192,6 +252,11 @@ public class SignupPage extends javax.swing.JFrame {
         txt_username.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         txt_username.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
         txt_username.setPlaceholder("Enter Username.......");
+        txt_username.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_usernameFocusLost(evt);
+            }
+        });
         txt_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_usernameActionPerformed(evt);
@@ -259,9 +324,14 @@ public class SignupPage extends javax.swing.JFrame {
         });
         jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, 390, 90));
 
+        jLabel17.setFont(new java.awt.Font("Serif", 1, 25)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Signup Page");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 130, 40));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 540, 830));
 
-        setSize(new java.awt.Dimension(1537, 836));
+        setSize(new java.awt.Dimension(1523, 828));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -283,9 +353,35 @@ public class SignupPage extends javax.swing.JFrame {
 
     private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
         // TODO add your handling code here:
-        insertSignupDetails();
-        
+        // validate form trước
+        if (!validateSignup()) {
+            return;
+        }
+
+        // lấy username đã trim
+        String username = txt_username.getText().trim();
+
+        // kiểm tra trùng và xử lý
+        if (!checkDuplicateUser(username)) {
+            insertSignupDetails();
+        } else {
+            JOptionPane.showMessageDialog(this, "Username đã tồn tại", "Trùng tên", JOptionPane.WARNING_MESSAGE);
+        }  
     }//GEN-LAST:event_rSMaterialButtonCircle2ActionPerformed
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+        
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
+        // TODO add your handling code here:
+        String username = txt_username.getText().trim();
+        if (!username.isEmpty() && checkDuplicateUser(username)) {
+            JOptionPane.showMessageDialog(this, "Username đã tồn tại");
+        }
+    }//GEN-LAST:event_txt_usernameFocusLost
 
     /**
      * @param args the command line arguments
@@ -321,6 +417,7 @@ public class SignupPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

@@ -3,22 +3,79 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package jframe;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.logging.Level;
 
 /**
  *
  * @author Admin
  */
-public class jframe extends javax.swing.JFrame {
+public class SignupPage extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(jframe.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SignupPage.class.getName());
 
     /**
      * Creates new form jframe
      */
-    public jframe() {
+    public SignupPage() {
         initComponents();
     }
+    
+    //method to insert values intot users table
+    public void insertSignupDetails() {
+        String name = txt_username.getText().trim();
+        String pwd = txt_password.getText().trim(); // nếu đổi thành JPasswordField: new String(txt_password.getPassword())
+        String email = txt_email.getText().trim();
+        String contact = txt_contact.getText().trim();
 
+        // validate input cơ bản
+        if (name.isEmpty() || pwd.isEmpty() || email.isEmpty() || contact.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String checkSql = "SELECT 1 FROM users WHERE email = ?";
+        String insertSql = "INSERT INTO users(name, password, email, contact) VALUES(?, ?, ?, ?)";
+
+        try (Connection con = DBConnection.getConnection()) {
+            if (con == null) {
+                JOptionPane.showMessageDialog(this, "Không kết nối được tới cơ sở dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // kiểm tra email đã tồn tại chưa (ví dụ)
+            try (PreparedStatement checkPst = con.prepareStatement(checkSql)) {
+                checkPst.setString(1, email);
+                try (ResultSet rs = checkPst.executeQuery()) {
+                    if (rs.next()) {
+                        JOptionPane.showMessageDialog(this, "Email đã tồn tại. Vui lòng sử dụng email khác.", "Thông báo", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                }
+            }
+
+            // insert
+            try (PreparedStatement pst = con.prepareStatement(insertSql)) {
+                pst.setString(1, name);
+                pst.setString(2, pwd);
+                pst.setString(3, email);
+                pst.setString(4, contact);
+
+                int rows = pst.executeUpdate();
+                if (rows > 0) {
+                    JOptionPane.showMessageDialog(this, "Đăng ký thành công!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Đăng ký thất bại. Vui lòng thử lại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.SEVERE, "Lỗi khi thao tác DB", e);
+            JOptionPane.showMessageDialog(this, "Lỗi cơ sở dữ liệu: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -194,6 +251,11 @@ public class jframe extends javax.swing.JFrame {
 
         rSMaterialButtonCircle2.setBackground(new java.awt.Color(255, 102, 102));
         rSMaterialButtonCircle2.setText("Signup");
+        rSMaterialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonCircle2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 590, 390, 90));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 540, 830));
@@ -218,6 +280,12 @@ public class jframe extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_emailActionPerformed
 
+    private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
+        // TODO add your handling code here:
+        insertSignupDetails();
+        
+    }//GEN-LAST:event_rSMaterialButtonCircle2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,7 +308,7 @@ public class jframe extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new jframe().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new SignupPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

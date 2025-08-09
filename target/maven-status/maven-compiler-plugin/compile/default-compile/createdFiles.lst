@@ -2,11 +2,14 @@ kietcorn\librarysystem\Forgot$8.class
 kietcorn\librarysystem\Login$5.class
 kietcorn\librarysystem\Login$3.class
 kietcorn\librarysystem\Signup$1.class
+kietcorn\librarysystem\AddUser$2.class
 kietcorn\librarysystem\Dashboard$1.class
 kietcorn\librarysystem\Forgot.class
 kietcorn\librarysystem\Forgot$3.class
+kietcorn\librarysystem\Dashboard$2.class
 kietcorn\librarysystem\Loading$1.class
 kietcorn\librarysystem\Dashboard.class
+kietcorn\librarysystem\AddUser$1.class
 kietcorn\librarysystem\Forgot$6.class
 kietcorn\librarysystem\Login$2.class
 kietcorn\librarysystem\Login.class
@@ -14,7 +17,10 @@ kietcorn\librarysystem\Forgot$4.class
 kietcorn\librarysystem\LibrarySystem.class
 kietcorn\librarysystem\Forgot$9.class
 kietcorn\librarysystem\Signup$3.class
+kietcorn\librarysystem\AddUser.class
 kietcorn\librarysystem\Forgot$1.class
+kietcorn\librarysystem\AddUser$4.class
+kietcorn\librarysystem\AddUser$3.class
 kietcorn\librarysystem\Forgot$2.class
 kietcorn\librarysystem\Signup$2.class
 kietcorn\librarysystem\Login$4.class
@@ -24,4 +30,7 @@ kietcorn\librarysystem\Signup.class
 kietcorn\librarysystem\Forgot$5.class
 kietcorn\librarysystem\Loading.class
 kietcorn\librarysystem\Login$1.class
+kietcorn\librarysystem\NewBook.class
 kietcorn\librarysystem\Signup$4.class
+kietcorn\librarysystem\Dashboard$3.class
+kietcorn\librarysystem\NewBook$1.class

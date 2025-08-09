@@ -45,6 +45,11 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1.setText("DASHBOARD");
 
         jButton1.setText("Add Document");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Remove Document");
 
@@ -63,6 +68,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButton9.setText("Exit");
 
         jButton10.setText("Add User");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Issue Document");
 
@@ -131,6 +141,21 @@ public class Dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        NewBook ob = new NewBook();
+        ob.setVisible(true);
+             
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        AddUser ob = new AddUser();
+        ob.setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments

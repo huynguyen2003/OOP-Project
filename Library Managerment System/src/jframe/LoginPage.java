@@ -58,7 +58,8 @@ public class LoginPage extends javax.swing.JFrame {
             
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Đăng nhập thành công!");
-                HomePage home = new HomePage;
+                HomePage home = new HomePage();
+  
                 home.setVisible(true);
                 this.dispose();
             } else {
@@ -197,7 +198,7 @@ public class LoginPage extends javax.swing.JFrame {
                 rSMaterialButtonCircle1ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSMaterialButtonCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 490, 90));
+        jPanel2.add(rSMaterialButtonCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 490, 80));
 
         rSMaterialButtonCircle2.setBackground(new java.awt.Color(255, 102, 102));
         rSMaterialButtonCircle2.setText("Signup");
@@ -206,7 +207,7 @@ public class LoginPage extends javax.swing.JFrame {
                 rSMaterialButtonCircle2ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 490, 90));
+        jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 490, 70));
 
         jLabel17.setFont(new java.awt.Font("Serif", 1, 25)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,18 +237,43 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
         // TODO add your handling code here:
+        if (validateLogin()) {
+            login();
+        }
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usernameActionPerformed
 
-    private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
-        // TODO add your handling code here:
-        String username = txt_username.getText().trim();
-        if (!username.isEmpty() && checkDuplicateUser(username)) {
-            JOptionPane.showMessageDialog(this, "Username đã tồn tại");
+        //check duplicate users
+    public boolean checkDuplicateUser(String username) {
+        String sql = "SELECT 1 FROM users WHERE name = ?";
+        // Dùng DBConnection để đồng nhất; không mở connection thủ công
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            if (con == null) {
+                logger.log(Level.SEVERE, "Không thể kết nối DB để check duplicate");
+                return false;
+            }
+
+            pst.setString(1, username);
+            try (ResultSet rs = pst.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "Lỗi khi kiểm tra duplicate user", ex);
+            return false; // nếu lỗi, trả false để không block luồng đăng ký; bạn có thể thay bằng true tuỳ chính sách
         }
+    }
+    private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
+            String username = txt_username.getText().trim();
+            if (!username.isEmpty()) {
+                if (!checkDuplicateUser(username)) {
+                    JOptionPane.showMessageDialog(this, "Username chưa tồn tại");
+                }
+            }
     }//GEN-LAST:event_txt_usernameFocusLost
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked

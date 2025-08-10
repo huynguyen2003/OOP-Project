@@ -22,9 +22,9 @@ import javax.swing.table.TableModel;
  *
  * @author Admin
  */
-public class ManageBooks extends javax.swing.JFrame {
+public class ManageStudent extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ManageBooks.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ManageStudent.class.getName());
 
     String bookName, author;
     int bookId, quantity;
@@ -33,7 +33,7 @@ public class ManageBooks extends javax.swing.JFrame {
     /**
      * Creates new form ManagerBooks
      */
-    public ManageBooks() {
+    public ManageStudent() {
         initComponents();
         setBookDetailsToTable();
     }
@@ -53,7 +53,7 @@ public class ManageBooks extends javax.swing.JFrame {
                 int quantity = rs.getInt("quantity");
                 
                 Object[] obj = {bookId, bookName, author, quantity};
-                model = (DefaultTableModel) tbl_bookDetails.getModel();
+                model = (DefaultTableModel) tbl_studentDetails.getModel();
                 model.addRow(obj);
             }
         } catch (Exception e) {
@@ -65,8 +65,8 @@ public class ManageBooks extends javax.swing.JFrame {
     //add book
     public boolean addBook() {
         boolean isAdded = false;
-        bookId = Integer.parseInt(txt_bookId.getText());
-        bookName = txt_bookName.getText();
+        bookId = Integer.parseInt(txt_studentId.getText());
+        bookName = txt_studentName.getText();
         author =txt_authorName.getText();
         quantity = Integer.parseInt(txt_quantity.getText());
         
@@ -96,8 +96,8 @@ public class ManageBooks extends javax.swing.JFrame {
     // to update
     public boolean updateBook() {
         boolean isUpdated = false;
-        bookId = Integer.parseInt(txt_bookId.getText());
-        bookName = txt_bookName.getText();
+        bookId = Integer.parseInt(txt_studentId.getText());
+        bookName = txt_studentName.getText();
         author =txt_authorName.getText();
         quantity = Integer.parseInt(txt_quantity.getText());
         
@@ -126,7 +126,7 @@ public class ManageBooks extends javax.swing.JFrame {
     //method to delete
     public boolean deleteBook() {
         boolean isDeleted = false;
-        bookId = Integer.parseInt(txt_bookId.getText());
+        bookId = Integer.parseInt(txt_studentId.getText());
         
         try  {
             Connection con = DBConnection.getConnection();
@@ -149,7 +149,7 @@ public class ManageBooks extends javax.swing.JFrame {
     
     //method to clear table
     public void clearTable() {
-        DefaultTableModel model = (DefaultTableModel) tbl_bookDetails.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl_studentDetails.getModel();
         model.setRowCount(0);
     }
     /**
@@ -164,26 +164,26 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txt_bookId = new app.bolivia.swing.JCTextField();
+        txt_studentId = new app.bolivia.swing.JCTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txt_bookName = new app.bolivia.swing.JCTextField();
+        txt_studentName = new app.bolivia.swing.JCTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        txt_authorName = new app.bolivia.swing.JCTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        txt_quantity = new app.bolivia.swing.JCTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         rSMaterialButtonCircle1 = new rojerusan.RSMaterialButtonCircle();
         rSMaterialButtonCircle2 = new rojerusan.RSMaterialButtonCircle();
         rSMaterialButtonCircle3 = new rojerusan.RSMaterialButtonCircle();
+        comboBranch = new javax.swing.JComboBox<>();
+        combo_CourseName = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_bookDetails = new rojeru_san.complementos.RSTableMetro();
+        tbl_studentDetails = new rojeru_san.complementos.RSTableMetro();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -207,29 +207,29 @@ public class ManageBooks extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 101, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 101, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        txt_bookId.setBackground(new java.awt.Color(102, 102, 255));
-        txt_bookId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_bookId.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        txt_bookId.setPlaceholder("Enter Book Id......");
-        txt_bookId.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_studentId.setBackground(new java.awt.Color(102, 102, 255));
+        txt_studentId.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_studentId.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txt_studentId.setPlaceholder("Enter Student Id......");
+        txt_studentId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_bookIdFocusLost(evt);
+                txt_studentIdFocusLost(evt);
             }
         });
-        txt_bookId.addActionListener(new java.awt.event.ActionListener() {
+        txt_studentId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_bookIdActionPerformed(evt);
+                txt_studentIdActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_bookId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 420, 40));
+        jPanel1.add(txt_studentId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 420, 40));
 
         jLabel11.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Enter Book Id");
+        jLabel11.setText("Enter Student Id");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 170, 30));
 
         jLabel12.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -237,25 +237,25 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/AddNewBookIcons/icons8_Contact_26px.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 50, 60));
 
-        txt_bookName.setBackground(new java.awt.Color(102, 102, 255));
-        txt_bookName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_bookName.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        txt_bookName.setPlaceholder("Enter Book Name.......");
-        txt_bookName.addFocusListener(new java.awt.event.FocusAdapter() {
+        txt_studentName.setBackground(new java.awt.Color(102, 102, 255));
+        txt_studentName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        txt_studentName.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
+        txt_studentName.setPlaceholder("Enter Student Name.......");
+        txt_studentName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_bookNameFocusLost(evt);
+                txt_studentNameFocusLost(evt);
             }
         });
-        txt_bookName.addActionListener(new java.awt.event.ActionListener() {
+        txt_studentName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_bookNameActionPerformed(evt);
+                txt_studentNameActionPerformed(evt);
             }
         });
-        jPanel1.add(txt_bookName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 420, 40));
+        jPanel1.add(txt_studentName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 420, 40));
 
         jLabel13.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Enter Book Name");
+        jLabel13.setText("Enter Student Name");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 200, 30));
 
         jLabel14.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -263,25 +263,9 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/AddNewBookIcons/icons8_Moleskine_26px.png"))); // NOI18N
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 50, 60));
 
-        txt_authorName.setBackground(new java.awt.Color(102, 102, 255));
-        txt_authorName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_authorName.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        txt_authorName.setPlaceholder("Author Name.......");
-        txt_authorName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_authorNameFocusLost(evt);
-            }
-        });
-        txt_authorName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_authorNameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_authorName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 420, 40));
-
         jLabel15.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Author Name");
+        jLabel15.setText("Select Course");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 180, 30));
 
         jLabel16.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -289,26 +273,10 @@ public class ManageBooks extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/AddNewBookIcons/icons8_Collaborator_Male_26px.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 50, 60));
 
-        txt_quantity.setBackground(new java.awt.Color(102, 102, 255));
-        txt_quantity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        txt_quantity.setFont(new java.awt.Font("Tahoma", 0, 17)); // NOI18N
-        txt_quantity.setPlaceholder("Quantity.......");
-        txt_quantity.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_quantityFocusLost(evt);
-            }
-        });
-        txt_quantity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_quantityActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txt_quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 420, 40));
-
         jLabel17.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Quantity");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 490, 120, 30));
+        jLabel17.setText("Select Branch");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 490, 150, 30));
 
         jLabel18.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -342,6 +310,14 @@ public class ManageBooks extends javax.swing.JFrame {
         });
         jPanel1.add(rSMaterialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, 180, 90));
 
+        comboBranch.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        comboBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AI", "IT", "CS", " ", " " }));
+        jPanel1.add(comboBranch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, 420, 40));
+
+        combo_CourseName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        combo_CourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K66", "K67", "K68", "K69", "K70" }));
+        jPanel1.add(combo_CourseName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 420, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 824));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -373,43 +349,43 @@ public class ManageBooks extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        tbl_bookDetails.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_studentDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Book Id", "Name", "Author", "Quantity"
+                "Student Id", "Name", "Course", "Branch"
             }
         ));
-        tbl_bookDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
-        tbl_bookDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
-        tbl_bookDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
-        tbl_bookDetails.setColorSelBackgound(new java.awt.Color(255, 102, 102));
-        tbl_bookDetails.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 25)); // NOI18N
-        tbl_bookDetails.setFuenteFilas(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
-        tbl_bookDetails.setFuenteFilasSelect(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
-        tbl_bookDetails.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
-        tbl_bookDetails.setRowHeight(40);
-        tbl_bookDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbl_studentDetails.setColorBackgoundHead(new java.awt.Color(102, 102, 255));
+        tbl_studentDetails.setColorBordeFilas(new java.awt.Color(102, 102, 255));
+        tbl_studentDetails.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        tbl_studentDetails.setColorSelBackgound(new java.awt.Color(255, 102, 102));
+        tbl_studentDetails.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 25)); // NOI18N
+        tbl_studentDetails.setFuenteFilas(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        tbl_studentDetails.setFuenteFilasSelect(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
+        tbl_studentDetails.setFuenteHead(new java.awt.Font("Yu Gothic UI Semibold", 1, 20)); // NOI18N
+        tbl_studentDetails.setRowHeight(40);
+        tbl_studentDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_bookDetailsMouseClicked(evt);
+                tbl_studentDetailsMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbl_bookDetails);
+        jScrollPane1.setViewportView(tbl_studentDetails);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 102, 102));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/AddNewBookIcons/icons8_Books_52px_1.png"))); // NOI18N
-        jLabel3.setText("Manage Books");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AddNewBookIcons/AddNewBookIcons/icons8_Student_Male_100px.png"))); // NOI18N
+        jLabel3.setText("Manage Students");
 
         jPanel5.setBackground(new java.awt.Color(255, 102, 102));
-        jPanel5.setPreferredSize(new java.awt.Dimension(410, 5));
+        jPanel5.setPreferredSize(new java.awt.Dimension(510, 5));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,33 +397,35 @@ public class ManageBooks extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(246, 246, 246)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(187, 187, 187))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(177, 177, 177)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addGap(62, 62, 62)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 752, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(328, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 1150, 830));
@@ -485,41 +463,25 @@ public class ManageBooks extends javax.swing.JFrame {
         }
     }
         
-    private void txt_bookIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookIdFocusLost
+    private void txt_studentIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_studentIdFocusLost
         // TODO add your handling code here:
-        String username = txt_bookId.getText().trim();
+        String username = txt_studentId.getText().trim();
         if (!username.isEmpty() && checkDuplicateUser(username)) {
             JOptionPane.showMessageDialog(this, "Username đã tồn tại");
         }
-    }//GEN-LAST:event_txt_bookIdFocusLost
+    }//GEN-LAST:event_txt_studentIdFocusLost
 
-    private void txt_bookIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookIdActionPerformed
+    private void txt_studentIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_studentIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bookIdActionPerformed
+    }//GEN-LAST:event_txt_studentIdActionPerformed
 
-    private void txt_bookNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_bookNameFocusLost
+    private void txt_studentNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_studentNameFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bookNameFocusLost
+    }//GEN-LAST:event_txt_studentNameFocusLost
 
-    private void txt_bookNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_bookNameActionPerformed
+    private void txt_studentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_studentNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_bookNameActionPerformed
-
-    private void txt_authorNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_authorNameFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_authorNameFocusLost
-
-    private void txt_authorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_authorNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_authorNameActionPerformed
-
-    private void txt_quantityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_quantityFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_quantityFocusLost
-
-    private void txt_quantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_quantityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_quantityActionPerformed
+    }//GEN-LAST:event_txt_studentNameActionPerformed
 
     private void rSMaterialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle1ActionPerformed
         // TODO add your handling code here:
@@ -539,17 +501,17 @@ public class ManageBooks extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void tbl_bookDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_bookDetailsMouseClicked
+    private void tbl_studentDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_studentDetailsMouseClicked
         // TODO add your handling code here:
-        int rowNo = tbl_bookDetails.getSelectedRow();
-        TableModel model = tbl_bookDetails.getModel();
+        int rowNo = tbl_studentDetails.getSelectedRow();
+        TableModel model = tbl_studentDetails.getModel();
         
-        txt_bookId.setText(model.getValueAt(rowNo, 0).toString());
-        txt_bookName.setText(model.getValueAt(rowNo, 1).toString());
+        txt_studentId.setText(model.getValueAt(rowNo, 0).toString());
+        txt_studentName.setText(model.getValueAt(rowNo, 1).toString());
         txt_authorName.setText(model.getValueAt(rowNo, 2).toString());
         txt_quantity.setText(model.getValueAt(rowNo, 3).toString());
         
-    }//GEN-LAST:event_tbl_bookDetailsMouseClicked
+    }//GEN-LAST:event_tbl_studentDetailsMouseClicked
 
     private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
         // TODO add your handling code here:
@@ -596,10 +558,12 @@ public class ManageBooks extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ManageBooks().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ManageStudent().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboBranch;
+    private javax.swing.JComboBox<String> combo_CourseName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -620,10 +584,8 @@ public class ManageBooks extends javax.swing.JFrame {
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle1;
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle2;
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle3;
-    private rojeru_san.complementos.RSTableMetro tbl_bookDetails;
-    private app.bolivia.swing.JCTextField txt_authorName;
-    private app.bolivia.swing.JCTextField txt_bookId;
-    private app.bolivia.swing.JCTextField txt_bookName;
-    private app.bolivia.swing.JCTextField txt_quantity;
+    private rojeru_san.complementos.RSTableMetro tbl_studentDetails;
+    private app.bolivia.swing.JCTextField txt_studentId;
+    private app.bolivia.swing.JCTextField txt_studentName;
     // End of variables declaration//GEN-END:variables
 }

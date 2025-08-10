@@ -268,12 +268,12 @@ public class LoginPage extends javax.swing.JFrame {
         }
     }
     private void txt_usernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_usernameFocusLost
-            String username = txt_username.getText().trim();
-            if (!username.isEmpty()) {
-                if (!checkDuplicateUser(username)) {
-                    JOptionPane.showMessageDialog(this, "Username chưa tồn tại");
-                }
+        String username = txt_username.getText().trim();
+        if (!username.isEmpty()) {
+            if (!checkDuplicateUser(username)) {
+                JOptionPane.showMessageDialog(this, "Username chưa tồn tại");
             }
+        }
     }//GEN-LAST:event_txt_usernameFocusLost
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked

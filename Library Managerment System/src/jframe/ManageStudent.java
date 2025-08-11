@@ -26,8 +26,8 @@ public class ManageStudent extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ManageStudent.class.getName());
 
-    String bookName, author;
-    int bookId, quantity;
+    String studentName, course, branch;
+    int studentId;
     DefaultTableModel model;
     
     /**
@@ -35,24 +35,23 @@ public class ManageStudent extends javax.swing.JFrame {
      */
     public ManageStudent() {
         initComponents();
-        setBookDetailsToTable();
+        setStudentDetailsToTable();
     }
 
-    //to set the book details into the table 
-    public void setBookDetailsToTable() {
+    public void setStudentDetailsToTable() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/library_ms", "root", ""); 
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("Select * from book_details");
+            ResultSet rs = st.executeQuery("Select * from student_details");
             
             while (rs.next()) {
-                String bookId = rs.getString("book_id");
-                String bookName = rs.getString("book_name");
-                String author = rs.getString("author");
-                int quantity = rs.getInt("quantity");
+                int studentId = rs.getInt("student_id");
+                String studentName = rs.getString("name");
+                String course = rs.getString("course");
+                String branch = rs.getString("branch");
                 
-                Object[] obj = {bookId, bookName, author, quantity};
+                Object[] obj = {studentId, studentName, course, branch};
                 model = (DefaultTableModel) tbl_studentDetails.getModel();
                 model.addRow(obj);
             }
@@ -62,22 +61,22 @@ public class ManageStudent extends javax.swing.JFrame {
         }
     }
     
-    //add book
-    public boolean addBook() {
+    //add student
+    public boolean addStudent() {
         boolean isAdded = false;
-        bookId = Integer.parseInt(txt_studentId.getText());
-        bookName = txt_studentName.getText();
-        author =txt_authorName.getText();
-        quantity = Integer.parseInt(txt_quantity.getText());
+        studentId = Integer.parseInt(txt_studentId.getText());
+        studentName = txt_studentName.getText();
+        course = combo_CourseName.getSelectedItem().toString();
+        branch = combo_branch.getSelectedItem().toString();
         
         try {
             Connection con = DBConnection.getConnection();
-            String sql = "insert into book_details values(?,?,?,?)";
+            String sql = "insert into student_details values(?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, bookId);
-            pst.setString(2, bookName);
-            pst.setString(3, author);
-            pst.setInt(4, quantity);
+            pst.setInt(1, studentId);
+            pst.setString(2, studentName);
+            pst.setString(3, course);
+            pst.setString(4, branch);
             
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
@@ -94,22 +93,22 @@ public class ManageStudent extends javax.swing.JFrame {
     }
     
     // to update
-    public boolean updateBook() {
+    public boolean updateStudent() {
         boolean isUpdated = false;
-        bookId = Integer.parseInt(txt_studentId.getText());
-        bookName = txt_studentName.getText();
-        author =txt_authorName.getText();
-        quantity = Integer.parseInt(txt_quantity.getText());
+        studentId = Integer.parseInt(txt_studentId.getText());
+        studentName = txt_studentName.getText();
+        course = combo_CourseName.getSelectedItem().toString();
+        branch = combo_branch.getSelectedItem().toString();
         
         try  {
             Connection con = DBConnection.getConnection();
-            String sql = "update book_details set book_name = ?, author = ?, quantity = ? where book_id= ?";
+            String sql = "update student_details set name = ?, course = ?, branch = ? where student_id= ?";
             PreparedStatement pst = con.prepareStatement(sql);
             
-            pst.setString(1, bookName);
-            pst.setString(2, author);
-            pst.setInt(3, quantity);
-            pst.setInt(4, bookId);
+            pst.setString(1, studentName);
+            pst.setString(2, course);
+            pst.setString(3, branch);
+            pst.setInt(4, studentId);
             
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
@@ -124,16 +123,16 @@ public class ManageStudent extends javax.swing.JFrame {
     }
             
     //method to delete
-    public boolean deleteBook() {
+    public boolean deleteStudent() {
         boolean isDeleted = false;
-        bookId = Integer.parseInt(txt_studentId.getText());
+        studentId = Integer.parseInt(txt_studentId.getText());
         
         try  {
             Connection con = DBConnection.getConnection();
-            String sql = "delete from book_details where book_id = ?";
+            String sql = "delete from student_details where student_id = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             
-            pst.setInt(1, bookId);
+            pst.setInt(1, studentId);
             
             int rowCount = pst.executeUpdate();
             if (rowCount > 0) {
@@ -177,7 +176,7 @@ public class ManageStudent extends javax.swing.JFrame {
         rSMaterialButtonCircle1 = new rojerusan.RSMaterialButtonCircle();
         rSMaterialButtonCircle2 = new rojerusan.RSMaterialButtonCircle();
         rSMaterialButtonCircle3 = new rojerusan.RSMaterialButtonCircle();
-        comboBranch = new javax.swing.JComboBox<>();
+        combo_branch = new javax.swing.JComboBox<>();
         combo_CourseName = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -310,9 +309,9 @@ public class ManageStudent extends javax.swing.JFrame {
         });
         jPanel1.add(rSMaterialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, 180, 90));
 
-        comboBranch.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
-        comboBranch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AI", "IT", "CS", " ", " " }));
-        jPanel1.add(comboBranch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, 420, 40));
+        combo_branch.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
+        combo_branch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AI", "IT", "CS", " ", " " }));
+        jPanel1.add(combo_branch, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, 420, 40));
 
         combo_CourseName.setFont(new java.awt.Font("Verdana", 0, 17)); // NOI18N
         combo_CourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "K66", "K67", "K68", "K69", "K70" }));
@@ -486,12 +485,12 @@ public class ManageStudent extends javax.swing.JFrame {
     private void rSMaterialButtonCircle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle1ActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
-        if (deleteBook() == true) {
-            JOptionPane.showMessageDialog(this, "Đã xóa sách");
+        if (deleteStudent() == true) {
+            JOptionPane.showMessageDialog(this, "Đã xóa học sinh");
             clearTable();
-            setBookDetailsToTable();
+            setStudentDetailsToTable();
         } else {
-            JOptionPane.showMessageDialog(this, "Xoá sách không thành công");
+            JOptionPane.showMessageDialog(this, "Xoá thông tin học sinh không thành công");
         }        
         
     }//GEN-LAST:event_rSMaterialButtonCircle1ActionPerformed
@@ -508,29 +507,31 @@ public class ManageStudent extends javax.swing.JFrame {
         
         txt_studentId.setText(model.getValueAt(rowNo, 0).toString());
         txt_studentName.setText(model.getValueAt(rowNo, 1).toString());
-        txt_authorName.setText(model.getValueAt(rowNo, 2).toString());
-        txt_quantity.setText(model.getValueAt(rowNo, 3).toString());
+        combo_CourseName.setSelectedItem(model.getValueAt(rowNo,2).toString());
+        combo_branch.setSelectedItem(model.getValueAt(rowNo,3).toString());
+
+
         
     }//GEN-LAST:event_tbl_studentDetailsMouseClicked
 
     private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
         // TODO add your handling code here:
-        if (addBook() == true) {
-            JOptionPane.showMessageDialog(this, "Đã thêm sách");
+        if (addStudent() == true) {
+            JOptionPane.showMessageDialog(this, "Đã thêm học sinh");
             clearTable();
-            setBookDetailsToTable();
+            setStudentDetailsToTable();
         } else {
-            JOptionPane.showMessageDialog(this, "Sách đã được thêm trước đó");
+            JOptionPane.showMessageDialog(this, "Học sinh đã được thêm trước đó");
         }
    
     }//GEN-LAST:event_rSMaterialButtonCircle2ActionPerformed
 
     private void rSMaterialButtonCircle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle3ActionPerformed
         // TODO add your handling code here:
-        if (updateBook() == true) {
-            JOptionPane.showMessageDialog(this, "Đã thay đổi thông tin sách");
+        if (updateStudent() == true) {
+            JOptionPane.showMessageDialog(this, "Đã thay đổi thông tin học sinh");
             clearTable();
-            setBookDetailsToTable();
+            setStudentDetailsToTable();
         } else {
             JOptionPane.showMessageDialog(this, "Thay đổi thông tin không thành công");
         }
@@ -562,8 +563,8 @@ public class ManageStudent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboBranch;
     private javax.swing.JComboBox<String> combo_CourseName;
+    private javax.swing.JComboBox<String> combo_branch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

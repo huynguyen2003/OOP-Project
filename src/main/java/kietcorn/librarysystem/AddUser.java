@@ -25,7 +25,7 @@ public class AddUser extends javax.swing.JFrame {
      * Creates new form AddUser
      */
     public AddUser() {
-        super("Add User");
+        super("AddUser");
         initComponents();
         conn=javaConnect.connectDB();
         Random();
@@ -198,7 +198,7 @@ public class AddUser extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into UserInfo(User_ID, Name, Address, Email, DOB, PhoneNumber) values (?,?,?,?,?,?)";
+        String sql = "insert into User(User_ID, Name, Address, Email, DOB, PhoneNumber) values (?,?,?,?,?,?)";
         try {
             pst=conn.prepareStatement(sql);
             pst.setString(1, jTextField1.getText());
@@ -207,6 +207,7 @@ public class AddUser extends javax.swing.JFrame {
             pst.setString(4, jTextField4.getText());
             pst.setString(5, jTextField5.getText());
             pst.setString(6, jTextField6.getText());
+            pst.execute();
             JOptionPane.showMessageDialog(null, "User added successfully!");
         }
         catch(Exception e){

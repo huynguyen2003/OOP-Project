@@ -1,7 +1,8 @@
-# OOP-Project
+# ChatGPT team - OOP Summer 2025
 ## 📚 Library Management System
 
 Library Management System là một phần mềm quản lý thư viện, hỗ trợ tổ chức và quản lý sách, người dùng, cũng như các hoạt động mượn và trả sách.
+Phần mềm chỉ bao gồm 1 Actor chính: Librarian.
 Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập trình Hướng Đối Tượng (OOP).
 
 ## 👥 Coder
@@ -15,6 +16,7 @@ Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập
 - Nguyễn Thế An
 
 ## ⚡ Chức năng chính
+Mặc dù dự án chỉ có 1 Actor duy nhất, nhưng chức năng thì sẽ vẫn phân loại theo đặc điểm của 2 Actor bên dưới.
 ### 1. Admin
 
 - Admin có quyền quản lý toàn bộ hệ thống, bao gồm:
@@ -33,15 +35,15 @@ Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập
 
 ### 2. User
 
-- User có thể:
+User có thể:
 
-Đăng ký tài khoản và đăng nhập hệ thống.
+- Đăng ký tài khoản và đăng nhập hệ thống.
 
-Xem danh mục sách có sẵn trong thư viện.
+- Xem danh mục sách có sẵn trong thư viện.
 
-Gửi yêu cầu mượn sách.
+- Gửi yêu cầu mượn sách.
 
-Trả sách sau khi sử dụng.
+- Trả sách sau khi sử dụng.
 
 # 🚀 Cài đặt và chạy ứng dụng
 

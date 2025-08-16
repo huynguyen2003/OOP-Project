@@ -1,45 +1,86 @@
 # OOP-Project
-📚 Library Management System (Java + Swing + MySQL)
-📝 Giới thiệu
+# 📚 Library Management System
 
-Dự án Library Management System được xây dựng bằng Java (Swing + JDBC) nhằm quản lý hoạt động của một thư viện: quản lý sách, sinh viên, mượn/trả sách, theo dõi tình trạng vi phạm.
+Library Management System là một phần mềm quản lý thư viện, hỗ trợ tổ chức và quản lý sách, người dùng, cũng như các hoạt động mượn và trả sách.
+Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập trình Hướng Đối Tượng (OOP).
 
-Ứng dụng bao gồm giao diện đồ họa trực quan, hỗ trợ người quản lý thư viện thao tác dễ dàng mà không cần truy vấn cơ sở dữ liệu thủ công.
+# 👥 Coder
 
-🚀 Tính năng chính
+- Lê Thành Đạt
 
-👤 Đăng nhập / Đăng ký tài khoản
+- Ngô Văn Kiệt
 
-🏠 Trang chủ (HomePage): điều hướng đến các module
+- Nguyễn Quang Huy
 
-📖 Quản lý sách (ManageBooks): thêm, sửa, xóa, hiển thị danh sách sách
+- Nguyễn Thế An
 
-🎓 Quản lý sinh viên (ManageStudent): thêm, sửa, xóa, hiển thị danh sách sinh viên
+#⚡ Chức năng chính
+-- 1. Admin
 
-📥 Mượn sách (IssueBook): ghi nhận sinh viên mượn sách
+Admin có quyền quản lý toàn bộ hệ thống, bao gồm:
 
-📤 Trả sách (ReturnBook): xử lý việc trả sách
+Quản lý số lượng sách (tổng số, đã mượn, còn lại).
 
-📑 Xem chi tiết mượn sách (IssueBookDetails)
+Quản lý sinh viên: thêm, sửa, xóa thông tin người dùng.
 
-📜 Xem toàn bộ bản ghi (ViewAllRecord): mượn + trả
+Quản lý sách: thêm, sửa, xóa thông tin sách.
 
-⚠️ Danh sách vi phạm (DefaulterList): sinh viên trả sách quá hạn
+Xem và quản lý danh sách mượn/trả sách.
 
-🏗️ Kiến trúc hệ thống
+Theo dõi danh sách người vi phạm (Defaulter List).
 
-Hệ thống chia thành 3 lớp chính:
+Xem tất cả các bản ghi mượn sách trong hệ thống.
 
-UI Layer (Swing)
+-- 2. User
 
-LoginPage, SignupPage, HomePage, ManageBooks, ManageStudent,
+User có thể:
 
-IssueBook, ReturnBook, IssueBookDetails, ViewAllRecord, DefaulterList
+Đăng ký tài khoản và đăng nhập hệ thống.
 
-Data Layer (Entities)
+Xem danh mục sách có sẵn trong thư viện.
 
-Book, Student, User, IssueRecord, ReturnRecord, Defaulter
+Gửi yêu cầu mượn sách.
 
-Utility Layer
+Trả sách sau khi sử dụng.
 
-DBConnection (cung cấp kết nối JDBC đến MySQL)
+🛠️ Yêu cầu hệ thống
+
+Hệ điều hành: Windows / macOS / Linux
+
+Ngôn ngữ lập trình: Java 8+
+
+IDE khuyến nghị: IntelliJ IDEA, Eclipse, hoặc NetBeans
+
+Thư viện: Swing / JDBC
+
+Cơ sở dữ liệu: MySQL (qua XAMPP) hoặc SQLite (tùy chỉnh)
+
+# 🚀 Cài đặt và chạy ứng dụng
+
+- Clone repository:
+
+git clone https://github.com/<your-username>/<repo-name>.git
+
+
+- Cấu hình cơ sở dữ liệu:
+
+Nếu dùng XAMPP + MySQL: import file library_ms.sql vào phpMyAdmin.
+
+Nếu dùng SQLite: tạo file library.db và cập nhật chuỗi kết nối trong DBConnection.java.
+
+# Sử dụng:
+
+Mở dự án bằng IDE.
+
+Chạy lớp LoginPage.java hoặc HomePage.java.
+
+# 💻 Công nghệ sử dụng
+
+Ngôn ngữ lập trình: Java
+
+Giao diện: Swing (JFrame, JPanel, …)
+
+IDEA: Netbeans
+
+Cơ sở dữ liệu: MySQL (XAMPP)
+

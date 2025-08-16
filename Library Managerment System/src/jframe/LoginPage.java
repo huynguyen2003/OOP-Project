@@ -97,6 +97,7 @@ public class LoginPage extends javax.swing.JFrame {
         rSMaterialButtonCircle2 = new rojerusan.RSMaterialButtonCircle();
         jLabel17 = new javax.swing.JLabel();
         txt_password = new app.bolivia.swing.JCTextField();
+        rSMaterialButtonCircle3 = new rojerusan.RSMaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -136,7 +137,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 102));
         jPanel2.setForeground(new java.awt.Color(102, 153, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -198,16 +199,16 @@ public class LoginPage extends javax.swing.JFrame {
                 rSMaterialButtonCircle1ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSMaterialButtonCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 490, 80));
+        jPanel2.add(rSMaterialButtonCircle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 490, 80));
 
-        rSMaterialButtonCircle2.setBackground(new java.awt.Color(255, 102, 102));
-        rSMaterialButtonCircle2.setText("Signup");
+        rSMaterialButtonCircle2.setBackground(new java.awt.Color(0, 153, 0));
+        rSMaterialButtonCircle2.setText("Forgot Password?");
         rSMaterialButtonCircle2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rSMaterialButtonCircle2ActionPerformed(evt);
             }
         });
-        jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 620, 490, 70));
+        jPanel2.add(rSMaterialButtonCircle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, 490, 70));
 
         jLabel17.setFont(new java.awt.Font("Serif", 1, 25)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,6 +226,15 @@ public class LoginPage extends javax.swing.JFrame {
         });
         jPanel2.add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 390, 40));
 
+        rSMaterialButtonCircle3.setBackground(new java.awt.Color(255, 102, 102));
+        rSMaterialButtonCircle3.setText("Signup");
+        rSMaterialButtonCircle3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSMaterialButtonCircle3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rSMaterialButtonCircle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 590, 490, 70));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, 540, 830));
 
         setSize(new java.awt.Dimension(1523, 828));
@@ -233,6 +243,9 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void rSMaterialButtonCircle2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle2ActionPerformed
 
+        setVisible(false);
+        ForgotPass ob = new ForgotPass();
+        ob.setVisible(true);
     }//GEN-LAST:event_rSMaterialButtonCircle2ActionPerformed
 
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
@@ -287,6 +300,13 @@ public class LoginPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rSMaterialButtonCircle1ActionPerformed
 
+    private void rSMaterialButtonCircle3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSMaterialButtonCircle3ActionPerformed
+        // TODO add your handling code here:
+        setVisible(false);
+        SignupPage ob = new SignupPage();
+        ob.setVisible(true);
+    }//GEN-LAST:event_rSMaterialButtonCircle3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,6 +349,7 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle1;
     private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle2;
+    private rojerusan.RSMaterialButtonCircle rSMaterialButtonCircle3;
     private app.bolivia.swing.JCTextField txt_password;
     private app.bolivia.swing.JCTextField txt_username;
     // End of variables declaration//GEN-END:variables

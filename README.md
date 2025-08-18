@@ -1,25 +1,25 @@
 # ChatGPT team - OOP Summer 2025
-## 📚 Library Management System
+## Library Management System
 
 Library Management System là một phần mềm quản lý thư viện, hỗ trợ tổ chức và quản lý sách, người dùng, cũng như các hoạt động mượn và trả sách.
 Phần mềm chỉ bao gồm 1 Actor chính: Librarian.
 Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập trình Hướng Đối Tượng (OOP).
 
-## 👥 Coder
+## Contributors
 
-- Lê Thành Đạt
+- Lê Thành Đạt (35%)
 
-- Ngô Văn Kiệt
+- Ngô Văn Kiệt (35%)
 
-- Nguyễn Quang Huy
+- Nguyễn Quang Huy (20%)
 
-- Nguyễn Thế An
+- Nguyễn Thế An (10%)
 
-## ⚡ Chức năng chính
+## Chức năng chính
 Mặc dù dự án chỉ có 1 Actor duy nhất, nhưng chức năng thì sẽ vẫn phân loại theo đặc điểm của 2 Actor bên dưới.
 ### 1. Admin
 
-- Admin có quyền quản lý toàn bộ hệ thống, bao gồm:
+Admin có quyền quản lý toàn bộ hệ thống, bao gồm:
 
 - Quản lý số lượng sách (tổng số, đã mượn, còn lại).
 
@@ -45,7 +45,7 @@ User có thể:
 
 - Trả sách sau khi sử dụng.
 
-# 🚀 Cài đặt và chạy ứng dụng
+# Cài đặt và chạy ứng dụng
 
 - Clone repo này về máy tính cá nhân
 
@@ -63,13 +63,13 @@ Mở dự án bằng IDE.
 
 Chạy lớp LoginPage.java hoặc HomePage.java.
 
-# 💻 Công nghệ sử dụng
+# Công nghệ sử dụng
 
-Ngôn ngữ lập trình: Java
+- Ngôn ngữ lập trình: Java
 
-Giao diện: Swing (JFrame, JPanel, …)
+- Giao diện: Swing (JFrame, JPanel, …)
 
-IDEA: Netbeans
+- IDEA: Netbeans
 
-Cơ sở dữ liệu: MySQL (XAMPP)
+- Cơ sở dữ liệu: XAMPP hoặc SQLite nếu muốn run nhánh kietcorn
 

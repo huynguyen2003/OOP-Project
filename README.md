@@ -57,11 +57,7 @@ Nếu dùng SQLite: tạo file library.db và cập nhật chuỗi kết nối t
 
 Trong tệp DBConnection, thay đường dẫn lưu DB bằng đường dẫn tới file DB của bạn.
 
-# Sử dụng:
-
-Mở dự án bằng IDE.
-
-Chạy lớp LoginPage.java hoặc HomePage.java.
+- Chạy lớp LoginPage.java hoặc HomePage.java.
 
 # Công nghệ sử dụng
 

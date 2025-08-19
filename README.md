@@ -7,13 +7,11 @@ Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập
 
 ## Contributors
 
-- Lê Thành Đạt (35%)
+- Lê Thành Đạt (40%)
 
-- Ngô Văn Kiệt (35%)
+- Ngô Văn Kiệt (40%)
 
 - Nguyễn Quang Huy (20%)
-
-- Nguyễn Thế An (10%)
 
 ## Chức năng chính
 Mặc dù dự án chỉ có 1 Actor duy nhất, nhưng chức năng thì sẽ vẫn phân loại theo đặc điểm của 2 Actor bên dưới.

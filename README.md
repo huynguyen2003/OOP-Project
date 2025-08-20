@@ -13,6 +13,9 @@ Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập
 
 - Nguyễn Quang Huy (30%)
 
+## UML
+<img width="642" height="599" alt="image" src="https://github.com/user-attachments/assets/d37dd6a6-24fc-4380-b299-e84eefe5c78c" />
+
 ## Chức năng chính
 Mặc dù dự án chỉ có 1 Actor duy nhất, nhưng chức năng thì sẽ vẫn phân loại theo đặc điểm của 2 Actor bên dưới.
 ### 1. Admin

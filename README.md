@@ -13,6 +13,8 @@ Hệ thống được xây dựng trong khuôn khổ bài tập lớn môn Lập
 
 - Nguyễn Quang Huy (30%)
 
+- Nguyễn Thế An (0%) 
+
 ## UML
 <img width="642" height="599" alt="image" src="https://github.com/user-attachments/assets/d37dd6a6-24fc-4380-b299-e84eefe5c78c" />
 

@@ -38,9 +38,9 @@ public class ForgotPass extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             
             if (rs.next()) {
-                txt_password.setText(rs.getString(2));
-                txt_email.setText(rs.getString(3));
-                txt_contact.setText(rs.getString(4));
+                txt_password.setText(rs.getString(3));
+                txt_email.setText(rs.getString(4));
+                txt_contact.setText(rs.getString(5));
                 rs.close();
                 pst.close();
             } else {
@@ -82,6 +82,7 @@ public class ForgotPass extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
         jPanel2.setForeground(new java.awt.Color(102, 153, 255));

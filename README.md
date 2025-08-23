@@ -71,6 +71,6 @@ Trong tệp DBConnection, thay đường dẫn lưu DB bằng đường dẫn t�
 - IDEA: Netbeans
 
 - Cơ sở dữ liệu: XAMPP hoặc SQLite nếu muốn run nhánh kietcorn
-  #Demo
+# Demo
 - Link video: https://drive.google.com/file/d/1ReAjCCBMyFmp50u6vhhpV_h1FLGSHHc5/view?usp=sharing
 

@@ -72,5 +72,5 @@ Trong tệp DBConnection, thay đường dẫn lưu DB bằng đường dẫn t�
 
 - Cơ sở dữ liệu: XAMPP hoặc SQLite nếu muốn run nhánh kietcorn
 # Demo
-- Link video: https://drive.google.com/file/d/1ReAjCCBMyFmp50u6vhhpV_h1FLGSHHc5/view?usp=sharing
+- Link video: https://youtu.be/EFShX-vrEfY?si=vSM1zMiyKxwXe3g6
 
